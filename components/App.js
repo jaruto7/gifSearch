@@ -22,7 +22,8 @@ App = React.createClass({
 
     getGif: function( searchingText, callback ) {
         var GIPHY_PUB_KEY = 'tfwdXYnOAhMI6CWwmBrxaje8EQndxBk6';
-        var GIPHY_API_URL = "https://api.giphy.com/v1/gifs/random?api_key=tfwdXYnOAhMI6CWwmBrxaje8EQndxBk6&tag=&rating=G";
+        var GIPHY_API_URL = "https://api.giphy.com";
+        // var GIPHY_API_URL = "https://api.giphy.com/v1/gifs/random?api_key=tfwdXYnOAhMI6CWwmBrxaje8EQndxBk6&tag=&rating=G";
 
         var url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText;
         var xhr = new XMLHttpRequest();
@@ -31,7 +32,7 @@ App = React.createClass({
             if( xhr.status === 200) {
                 var data = JSON.parse( xhr.responseText ).data;
                 var gif = {
-                    url: data.fixed-width_downsampled_url,
+                    url: data.fixed_width_downsampled_url,
                     sourceUrl: data.url
                 };
                 callback( gif );
